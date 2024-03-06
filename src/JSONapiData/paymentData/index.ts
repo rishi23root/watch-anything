@@ -1,4 +1,3 @@
-import { priceDataType } from '@/types/payment';
-import data from './data.json' assert { type: 'json' };
+import data from './data.json';
 
-export const priceData:priceDataType[] = data;
+export const priceData = data;

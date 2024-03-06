@@ -1,4 +1,3 @@
-import { NavProps } from "@/types/utils";
 import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +9,7 @@ import {
 } from "./client";
 import { Suspense } from "react";
 
-function Nav({ isSignedIn, pathname }: NavProps) {
+function Nav({ isSignedIn, pathname }: any) {
   return (
     <div className="pr-2 fcb">
       <LogoElementWithLink />
@@ -24,7 +23,7 @@ function Nav({ isSignedIn, pathname }: NavProps) {
   );
 }
 
-function NavBtns(props: NavProps) {
+function NavBtns(props: any) {
   const { isSignedIn, pathname } = props;
   if (!isSignedIn) {
     return (

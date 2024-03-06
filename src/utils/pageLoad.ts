@@ -9,6 +9,7 @@
 // import { serverAPI } from "@/serverTRPC/serverAPI";
 
 
+export async function newUserLoginHandler() { }
 
 
 // export async function newUserLoginHandler(): Promise<PrivateMetadata | {}> {

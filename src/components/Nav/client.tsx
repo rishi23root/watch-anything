@@ -1,6 +1,4 @@
 "use client";
-import useNotification from "@/hooks/NotificationHandeller";
-import { NavProps, Notification } from "@/types/utils";
 import { useState } from "react";
 import {
   DropdownMenu,
@@ -22,7 +20,6 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { NavLinks } from "./utils";
-import useRedirectHandler from "@/hooks/redirectionHandlers";
 
 // logo element
 export function LogoElementWithLink() {
@@ -56,7 +53,6 @@ export function LogoElementWithLink() {
 
 // notification components
 export function NotificationElement() {
-  const notification = useNotification();
   // const [open, setopen] = useState(false);
   return (
     <div className="relative w-[40px] h-[40px] pointer hover:border border-gray-600 rounded md:block hidden">
@@ -89,19 +85,14 @@ export function NotificationElement() {
             Notifications
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <NotificationRenderer
-            notification={notification}
-            // setopen={setopen}
-          />
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
   );
 }
 
-export function HamburgerOnMobile(props: NavProps) {
+export function HamburgerOnMobile(props: any) {
   const [open, setOpen] = useState(false);
-  const notification = useNotification();
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger>
@@ -119,21 +110,6 @@ export function HamburgerOnMobile(props: NavProps) {
             <NavLinks {...props} />
           </SheetDescription>
         </SheetHeader>
-
-        {/* notifications */}
-        {/* <SheetHeader className="text-start">
-          {notification.length && (
-            <SheetTitle className="pt-12 pb-4">Notification</SheetTitle>
-          )}
-          <div
-            className="flex flex-col gap-2 text-lg "
-            onClick={(_) => setOpen(false)}
-          >
-            <NotificationRenderer notification={notification} />
-          </div>
-        </SheetHeader> */}
-
-        <div className="flex-1 "></div>
 
         {/* if not on dashboard page */}
         {props.pathname != "/dashboard" && (
@@ -158,87 +134,5 @@ export function HamburgerOnMobile(props: NavProps) {
 }
 
 export function NavLinksDashboard() {
-  const { urlWithOnlyTheseParams } = useRedirectHandler();
-
-  return (
-    <>
-      <Link
-        href={urlWithOnlyTheseParams("/Templates", {
-          templateName: "singleColumn",
-        })}
-        className="text-violet-50 hover:underline underline-offset-8 decoration-blue-500 transition-all duration-300 ease-in-out"
-      >
-        Templates
-      </Link>
-      <Link
-        href={urlWithOnlyTheseParams("/Payment")}
-        className="text-violet-50 hover:underline underline-offset-8 decoration-blue-500 transition-all duration-300 ease-in-out"
-      >
-        Price
-      </Link>
-      <Link
-        href={urlWithOnlyTheseParams("/JobDescriptions")}
-        className="text-violet-50 hover:underline underline-offset-8 decoration-blue-500 transition-all duration-300 ease-in-out"
-      >
-        Job Descriptions
-      </Link>
-      <Link
-        href={"/blog"}
-        className="text-violet-50 hover:underline underline-offset-8 decoration-blue-500 transition-all duration-300 ease-in-out"
-      >
-        Blogs
-      </Link>
-    </>
-  );
-}
-
-function NotificationRenderer({
-  notification,
-  setopen,
-}: {
-  notification: Notification[];
-  setopen?: (a: boolean) => void;
-}) {
-  const router = useRouter();
-  const classForNotification = {
-    info: "bg-blue-500",
-    alert: "bg-red-500 ",
-    warn: " bg-yellow-500 ",
-    error: " bg-red-700",
-  };
-  return (
-    <>
-      {notification.map((noti, index) => {
-        return (
-          <div
-            onClick={() => {
-              // if link is provied then navigate there ele pass
-              noti.link && router.push(noti.link);
-              if (setopen) setopen(false);
-            }}
-            key={noti.message + index}
-            className={cn(
-              `m-1 p-2  bg-opacity-10 border rounded-lg border-opacity-10 shadow-sm border-white text-sm md:text-xl h-fit`,
-              classForNotification[noti.type],
-              "relative",
-              "cursor-pointer"
-            )}
-          >
-            {(noti.type as string).toUpperCase()}: {noti.message}
-            {noti.link && (
-              <div className="absolute bottom-0 h-full font-bold tracking-widest right-3 fcc cursor-grab">
-                <Image
-                  src={"/svgs/arrow.svg"}
-                  width={20}
-                  height={20}
-                  alt="small arrow img "
-                  className="-rotate-12"
-                />
-              </div>
-            )}
-          </div>
-        );
-      })}
-    </>
-  );
+  return <></>;
 }

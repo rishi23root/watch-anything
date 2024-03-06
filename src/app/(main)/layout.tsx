@@ -1,6 +1,5 @@
 import Nav from "@/components/Nav/index";
 import ShowErrorIfany from "@/components/elements/errorRender";
-import ProcegureRender from "@/components/pageSpecific/ProcegureRender";
 import { Toaster as Sonar } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { newUserLoginHandler } from "@/utils/pageLoad";
@@ -23,11 +22,10 @@ export default async function RootLayout({
       <Sonar />
       {/* main layout for all pages  */}
       <div className="app xl:px-[11%] md:px-[5%] px-[2%] py-[2.5rem] flex flex-col lg:gap-20 gap-8 w-full">
-        <Nav isSignedIn={data ? true : false} pathname="/dashboard" />
+        {/* <Nav isSignedIn={data ? true : false} pathname="/dashboard" /> */}
         {/* pathname value is hardcoded here because it doesn't matter which path it is just not '/' */}
       </div>
       <main className="app xl:px-[11%] md:px-[5%] px-[2%] py-[2rem] gap-4 fc flex-1">
-        <ProcegureRender />
         <div className="lg:gap-10 gap-4 fr flex-1 ">
           <Suspense>{children}</Suspense>
         </div>

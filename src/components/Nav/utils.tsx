@@ -1,8 +1,7 @@
-import { NavProps } from "@/types/utils";
 import Link from "next/link";
 import { NavLinksDashboard } from "./client";
 
-export function NavLinks({ isSignedIn, pathname }: NavProps) {
+export function NavLinks({ isSignedIn, pathname }: any) {
   if (!isSignedIn || pathname == "/")
     return (
       <>
