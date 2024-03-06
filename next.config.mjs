@@ -8,7 +8,7 @@ eval(process.env.ANALYZE) && console.log("\tIn site sizeView :", eval(process.en
 const nextConfig = {
     experimental: {
         serverActions: {
-            allowedOrigins: ["localhost:3000", "*.app.github.dev", "*.vercel.app" ,'buildyourresume.online'],
+            allowedOrigins: ["localhost:3000", "*.app.github.dev", "*.vercel.app"],
         },
     },
     pageExtensions: ['mdx', 'ts', 'tsx'],

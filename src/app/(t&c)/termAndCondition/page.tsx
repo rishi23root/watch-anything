@@ -129,10 +129,10 @@ export default function TandC(props: PageProps) {
         If you have any questions or suggestions about my Terms and Conditions,
         do not hesitate to contact me at{" "}
         <Link
-          href="mailto:contact@buildyourresume.online"
+          href="mailto:contact@watchanything.online"
           className="underline text-blue-300 hover:text-blue-700"
         >
-          contact@buildyourresume.online
+          contact@watchanything.online
         </Link>
       </div>
     </div>

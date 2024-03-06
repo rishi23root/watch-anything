@@ -38,10 +38,10 @@ function Footer() {
             Terms & Conditions
           </Link>
           <Link
-            href={"mailto:contact@buildyourresume.online"}
+            href={"mailto:contact@watchanything.online"}
             className="text-base font-medium text-center sm:text-right  text-white "
           >
-            contact@buildyourresume.online
+            contact@watchanything.online
           </Link>
           <div className="w-full h-px border border-white" />
           <div className="fr gap-4 justify-center h-[2.5rem]">
