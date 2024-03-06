@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "Basic Package",
+    "price": "Rs. 14.99",
+    "description": "Essential Resume Package",
+    "features": [
+      "Choose from Top Templates",
+      "Latex base resume",
+      "Single click builder",
+      "Create Resume according to Job Description"
+    ],
+    "link": "/dashboard"
+  },
+  {
+    "id": 2,
+    "title": "Advanced Package",
+    "price": "Rs. 34.99",
+    "description": "Enhanced Resume Package",
+    "features": [
+      "Choose from Top Templates",
+      "Latex base resume",
+      "Create Resume according to Job Description",
+      "ATS integration (Applicant Tracking System)",
+      "AI integration and recommendation",
+      "Mentor Review for Resume"
+    ],
+    "link": "/dashboard"
+  },
+  {
+    "id": 3,
+    "title": "Premium Package",
+    "price": "Let's Talk",
+    "description": "Estimated Resume Package",
+    "features": [
+      "Mass building",
+      "Everything in basic plan ",
+      "Everything in Advance plan",
+      "Price discussion",
+      "Updates According to need (organization logo, etc)"
+    ],
+    "link": "mailto:contact@buildyourresume.online"
+  }
+]
