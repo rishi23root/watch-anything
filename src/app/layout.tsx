@@ -83,26 +83,34 @@ export default function RootLayout({
         baseTheme: dark,
       }}
     >
-      <html lang="en">
+      <html lang="en" className="dark">
         <body
           suppressHydrationWarning={true}
           className={clsx(
             poppins.className,
-            "bg-[#12141D]",
-            "text-[#E0E0E0]",
             "min-h-screen",
             "min-w-full",
             "relative ",
-            "fc border "
+            "fc",
+            // "dark:bg-white bg-dot-white/20 dark:bg-dot-black/20",
+            "bg-background bg-grid-white/20"
           )}
         >
-          <NextTopLoader height={3} color="#3b82f6" />
-          {/* 
+          <div
+            className={cn(
+              "w-full h-full absolute ",
+              // add lienar gradient to background
+              "bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-background from-50% to-transparent/20 to-100%"
+            )}
+          >
+            <NextTopLoader height={3} color="#3b82f6" />
+            {/* 
           <SpeedInsights />
           <Analytics />
-
+          
         <TwScreenInfo /> */}
-          {children}
+            {children}
+          </div>
         </body>
       </html>
     </ClerkProvider>
