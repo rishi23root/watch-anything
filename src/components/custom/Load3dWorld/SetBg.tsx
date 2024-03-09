@@ -6,6 +6,7 @@ import { typeRBG } from "@/types/common";
 import { getAverageRGB } from "@/utils/util";
 import { memo, useMemo, useState } from "react";
 import WorldRenderer from "./WorldRenderer";
+import { motion } from "framer-motion";
 
 // function which takes the bgfile as a prop and extract the average color from the image
 type setBgProps = {
@@ -21,7 +22,7 @@ const SetBg = memo(({ bgfile }: setBgProps) => {
 
   return (
     <div
-      className="absolute top-0 left-0 h-full w-full p-2 lg:p-12 -z-10"
+      className="absolute top-0 left-0 h-full w-full p-2 lg:p-12 z-1 bg-background transition-colors duration-300 ease-in-out"
       style={{
         backgroundColor: `rgba(${bgColor.r}, ${bgColor.g}, ${bgColor.b}, 0.8)`,
       }}

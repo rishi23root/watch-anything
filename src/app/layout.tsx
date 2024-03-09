@@ -91,24 +91,20 @@ export default function RootLayout({
             "min-h-screen",
             "min-w-full",
             "relative ",
-            "fc",
-            // "dark:bg-white bg-dot-white/20 dark:bg-dot-black/20",
+            "fc -z-10",
             "bg-background bg-grid-white/20"
           )}
         >
           <div
             className={cn(
               "w-full h-full absolute ",
+              "-z-5",
               // add lienar gradient to background
               "bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-background from-50% to-transparent/20 to-100%"
             )}
           >
             <NextTopLoader height={3} color="#3b82f6" />
-            {/* 
-          <SpeedInsights />
-          <Analytics />
-          
-        <TwScreenInfo /> */}
+            {/* <TwScreenInfo /> */}
             {children}
           </div>
         </body>

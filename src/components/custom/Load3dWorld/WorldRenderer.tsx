@@ -4,6 +4,7 @@ import { OrbitControls } from "@react-three/drei";
 import { Canvas, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
 import { TextureLoader } from "three/src/loaders/TextureLoader.js";
+import style from "@/styles/loading.module.css";
 
 type WorldRendererProps = {
   bgfile: string;
@@ -14,7 +15,7 @@ const WorldRenderer = ({ bgfile, className }: WorldRendererProps) => {
   const textureImage = useLoader(TextureLoader, bgfile);
 
   return (
-    <Canvas className={className}>
+    <Canvas className={`${style.threeDCanvasItself}`}>
       {/* <pointLight intensity={5} position={[0, 0, 0]} /> */}
       <ambientLight intensity={1.5} position={[0, 0, 0]} />
       <mesh scale={[-1, 1, 1]} position={[0, 0, 0]}>
