@@ -1,4 +1,5 @@
 import SetBg from "@/components/custom/Load3dWorld/SetBg";
+import Footer from "@/components/Footer";
 import NoSSR from "@/hooks/NoSSR";
 import { auth } from "@clerk/nextjs";
 import dynamic from "next/dynamic";
@@ -27,6 +28,7 @@ export default async function Home() {
         </NoSSR>
       </Suspense>
       <HeroSection />
+      <Footer/>
       {/* <main className="app xl:px-[11%] md:px-[5%] px-[2%] py-[2.5rem] flex flex-col lg:gap-20 gap-8">
       </main> */}
       {/* paint each section */}

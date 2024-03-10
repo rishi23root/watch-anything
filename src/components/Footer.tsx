@@ -5,17 +5,17 @@ import Link from "next/link";
 function Footer() {
   return (
     <>
-      <div className="py-4 ">
+      <div className="py-4 mt-96 ">
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent"></div>
       </div>
       <footer className="w-full sm:fcb">
         <Link href={"/"}>
           <Image
             alt="logo"
-            className="w-full h-20 lg:w-96 lg:h-20"
-            src="/logo.png"
-            width={350}
-            height={80}
+            className="w-full h-20 lg:w-auto lg:h-96"
+            src="/svgs/logo.svg"
+            width={500}
+            height={500}
           />
         </Link>
         <div className="flex flex-col lg:w-[60%] w-full gap-2 h-full py-2 ">

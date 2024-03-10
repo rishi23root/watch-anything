@@ -1,5 +1,6 @@
 "use client";
 import AmimateText from "@/components/custom/AmimateText";
+import Footer from "@/components/Footer";
 import { Genjiro, heroMisake } from "@/fonts";
 import RenderCompleted from "@/hooks/RenderCompleted";
 import style from "@/styles/loading.module.css";
@@ -40,21 +41,22 @@ export default function HomePageLayout() {
   }, [animate, isMounted, staggerMenuItems]);
 
   return (
+    <div className="h-auto ">
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, delay: 1.3 }}
-      className="absolute p-2 lg:p-12 w-full h-full top-0 text-black flex items-center justify-center"
+      className=" p-2 lg:p-0 w-full h-screen top-0 text-black flex items-center justify-center"
     >
       {/* landing page content */}
       <div
-        className={`flex flex-col items-center justify-between h-full w-full ${heroMisake.className} p-8`}
+        className={`flex flex-col lg:items-center justify-between h-full w-full ${heroMisake.className} p-8`}
         ref={scope}
       >
         {/* heading */}
         <motion.div
           {...topToPossition}
-          className={`${style.heroText} text-9xl shadow-sm ${Genjiro.className} border-gray-200 border-y-4 border-b-8 
+          className={`${style.heroText} lg:text-9xl text-2xl text-left shadow-sm ${Genjiro.className} border-gray-200 border-y-4 border-b-8 
           `}
           ref={heroTextRef}
         >
@@ -73,7 +75,7 @@ export default function HomePageLayout() {
           >
             <div
               ref={inputTextRef}
-              className="w-full h-full flex flex-col items-start justify-center p-4 relative"
+              className="w-screen h-full flex flex-col items-start text-xl justify-center p-4 relative"
             >
               <Image
                 priority
@@ -89,11 +91,12 @@ export default function HomePageLayout() {
                   y: -10,
                   transition: { duration: 0.2 },
                 }}
-                className={`${style.inputTextField} rounded-md p-2 w-full h-12 }`}
+                className={`${style.inputTextField} rounded-md p-2 w-full text-white lg:h-12 h-4 text-xl }`}
                 type="text"
                 placeholder="Search for a movie by name or magnet url here..."
+                
               />
-              <div className="flex p-1 text-white opacity-50 center w-full justify-center">
+              <div className="flex p-1 text-white center w-full justify-center">
                 Enter Your Thoughts
                 <Image
                   priority
@@ -110,19 +113,19 @@ export default function HomePageLayout() {
 
         {/* action elements */}
         <div
-          className={`flex flex-row w-full self-end justify-around h-1/6 items-center cursor-pointer  
+          className={`flex lg:flex-row flex-col w-full self-end justify-around lg:h-1/6 h-48 lg:gap-0 gap-96 items-center cursor-pointer  
           font-sans `}
         >
           <motion.div
             initial={{ opacity: 0 }}
             whileHover={{
-              scale: 1.12,
-              y: -70,
+              scale: 1.05,
+              y: -20,
             }}
             whileTap={{
               scale: 1.5,
             }}
-            className={`${style.itemCard} itemCard text-white text-4xl`}
+            className={`${style.itemCard} itemCard text-white lg:text-4xl text-xl`}
           >
             <motion.div
               initial={{ y: 60 }}
@@ -151,10 +154,10 @@ export default function HomePageLayout() {
           <motion.div
             initial={{ opacity: 0 }}
             whileHover={{
-              scale: 1.12,
-              y: -70,
+              scale: 1.05,
+              y: -20,
             }}
-            className={`${style.itemCard} itemCard text-white text-4xl`}
+            className={`${style.itemCard} itemCard text-white lg:text-4xl text-xl`}
           >
             <motion.div
               initial={{ y: 60 }}
@@ -183,8 +186,8 @@ export default function HomePageLayout() {
           <motion.div
             initial={{ opacity: 0 }}
             whileHover={{
-              scale: 1.12,
-              y: -70,
+              scale: 1.05,
+              y: -20,
             }}
             className={`${style.itemCard} itemCard text-white text-4xl`}
           >
@@ -215,5 +218,6 @@ export default function HomePageLayout() {
         </div>
       </div>
     </motion.div>
+   </div>
   );
 }

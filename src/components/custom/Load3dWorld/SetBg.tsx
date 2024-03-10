@@ -21,7 +21,7 @@ const SetBg = memo(({ bgfile }: setBgProps) => {
 
   return (
     <div
-      className="absolute top-0 left-0 h-full w-full p-2 lg:p-12 -z-10 "
+      className="absolute top-0 left-0 h-full w-full z-[-30] "
       style={{
         backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
       }}
