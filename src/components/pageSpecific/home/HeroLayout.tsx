@@ -146,7 +146,7 @@ export default function HomePageLayout() {
                 delay: 4,
                 duration: 0.5,
               }}
-              className={`${style.itemCardData} w-auto lg:h-40`}
+              className={`${style.itemCardData} w-auto lg:h-40 mt-5`}
             >
               {
                 "Unlimited movie options at your fingertips - watch anything you want!"
@@ -178,7 +178,7 @@ export default function HomePageLayout() {
                 delay: 4,
                 duration: 0.5,
               }}
-              className={`${style.itemCardData} w-auto lg:h-40`}
+              className={`${style.itemCardData} w-auto lg:h-40 mt-5`}
             >
               {
                 "Unlimited Torrent at your fingertips - watch, stream or download anything you want! of your choice"
@@ -210,7 +210,7 @@ export default function HomePageLayout() {
                 delay: 4,
                 duration: 0.5,
               }}
-              className={`${style.itemCardData} w-auto lg:h-40`}
+              className={`${style.itemCardData} w-auto lg:h-40 mt-5`}
             >
               {
                 "Unlimited upload Torrent options at your fingertips - upload and share anything you want! of your choice"
