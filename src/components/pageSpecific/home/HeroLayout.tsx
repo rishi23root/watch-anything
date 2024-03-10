@@ -43,7 +43,7 @@ export default function HomePageLayout() {
 
   return (
  
-    <>
+    <div className="lg:p-10 p-2">
       <Nav/>
     <motion.div
       initial={{ opacity: 0 }}
@@ -146,7 +146,7 @@ export default function HomePageLayout() {
                 delay: 4,
                 duration: 0.5,
               }}
-              className={`${style.itemCardData} w-auto lg:h-40 mt-5`}
+              className={`${style.itemCardData} w-auto lg:h-40 lg:mt-5 mt-2`}
             >
               {
                 "Unlimited movie options at your fingertips - watch anything you want!"
@@ -178,7 +178,7 @@ export default function HomePageLayout() {
                 delay: 4,
                 duration: 0.5,
               }}
-              className={`${style.itemCardData} w-auto lg:h-40 mt-5`}
+              className={`${style.itemCardData} w-auto lg:h-40 lg:mt-5 mt-2`}
             >
               {
                 "Unlimited Torrent at your fingertips - watch, stream or download anything you want! of your choice"
@@ -210,7 +210,7 @@ export default function HomePageLayout() {
                 delay: 4,
                 duration: 0.5,
               }}
-              className={`${style.itemCardData} w-auto lg:h-40 mt-5`}
+              className={`${style.itemCardData} w-auto lg:h-40 lg:mt-5 mt-2`}
             >
               {
                 "Unlimited upload Torrent options at your fingertips - upload and share anything you want! of your choice"
@@ -220,6 +220,6 @@ export default function HomePageLayout() {
         </div>
         </div>
     </motion.div>
-   </>
+   </div>
   );
 }
