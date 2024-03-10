@@ -1,5 +1,6 @@
 "use client";
 import AmimateText from "@/components/custom/AmimateText";
+import Nav from "@/components/Nav/index";
 import Footer from "@/components/Footer";
 import { Genjiro, heroMisake } from "@/fonts";
 import RenderCompleted from "@/hooks/RenderCompleted";
@@ -41,7 +42,9 @@ export default function HomePageLayout() {
   }, [animate, isMounted, staggerMenuItems]);
 
   return (
-    <div className="h-auto ">
+ 
+    <>
+      <Nav/>
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -56,7 +59,7 @@ export default function HomePageLayout() {
         {/* heading */}
         <motion.div
           {...topToPossition}
-          className={`${style.heroText} lg:text-9xl text-2xl text-left shadow-sm ${Genjiro.className} border-gray-200 border-y-4 border-b-8 
+          className={`${style.heroText} lg:text-9xl text-2xl text-left shadow-sm ${Genjiro.className} border-gray-200 lg:border-y-4 lg:border-b-8 
           `}
           ref={heroTextRef}
         >
@@ -75,7 +78,7 @@ export default function HomePageLayout() {
           >
             <div
               ref={inputTextRef}
-              className="w-screen h-full flex flex-col items-start text-xl justify-center p-4 relative"
+              className="w-full h-full flex flex-col items-start justify-center p-4 relative"
             >
               <Image
                 priority
@@ -83,7 +86,7 @@ export default function HomePageLayout() {
                 width={10}
                 height={10}
                 alt="input cointainer svg"
-                className="absolute w-auto h-full top-0 left-0 -z-10"
+                className="absolute w-full h-full top-0 left-0 -z-10"
               />
               <motion.input
                 whileFocus={{
@@ -91,12 +94,11 @@ export default function HomePageLayout() {
                   y: -10,
                   transition: { duration: 0.2 },
                 }}
-                className={`${style.inputTextField} rounded-md p-2 w-full text-white lg:h-12 h-4 text-xl }`}
+                className={`${style.inputTextField} rounded-md p-2 w-full h-12 }`}
                 type="text"
                 placeholder="Search for a movie by name or magnet url here..."
-                
               />
-              <div className="flex p-1 text-white center w-full justify-center">
+              <div className="flex p-1 text-white opacity-50 center w-full justify-center">
                 Enter Your Thoughts
                 <Image
                   priority
@@ -112,10 +114,9 @@ export default function HomePageLayout() {
         </motion.div>
 
         {/* action elements */}
-        <div className="">
+
         <div
-          className={`flex lg:flex-row flex-col w-full self-end justify-around lg:h-1/6 h-48 lg:gap-20 gap-40 items-center cursor-pointer  
-          font-sans `}
+          className={`flex lg:flex-row flex-col w-full items-center justify-asround  lg:gap-20 gap-10 items-center cursor-pointer font-sans`}
         >
           <motion.div
             initial={{ opacity: 0 }}
@@ -126,7 +127,7 @@ export default function HomePageLayout() {
             whileTap={{
               scale: 1.5,
             }}
-            className={`${style.itemCard} itemCard text-black lg:text-4xl text-xl`}
+            className={`${style.itemCard} itemCard p-10 text-black lg:text-4xl text-xl lg:w-96 w-auto mx-auto `}
           >
             <motion.div
               initial={{ y: 60 }}
@@ -145,7 +146,7 @@ export default function HomePageLayout() {
                 delay: 4,
                 duration: 0.5,
               }}
-              className={`${style.itemCardData} lg:w-auto w-40`}
+              className={`${style.itemCardData} w-auto lg:h-40`}
             >
               {
                 "Unlimited movie options at your fingertips - watch anything you want!"
@@ -158,7 +159,7 @@ export default function HomePageLayout() {
               scale: 1.05,
               y: -20,
             }}
-            className={`${style.itemCard} itemCard text-black lg:text-4xl text-xl`}
+            className={`${style.itemCard} itemCard p-10 text-black lg:text-4xl text-xl lg:w-96 w-auto mx-auto `}
           >
             <motion.div
               initial={{ y: 60 }}
@@ -177,7 +178,7 @@ export default function HomePageLayout() {
                 delay: 4,
                 duration: 0.5,
               }}
-              className={`${style.itemCardData}`}
+              className={`${style.itemCardData} w-auto lg:h-40`}
             >
               {
                 "Unlimited Torrent at your fingertips - watch, stream or download anything you want! of your choice"
@@ -190,7 +191,7 @@ export default function HomePageLayout() {
               scale: 1.05,
               y: -20,
             }}
-            className={`${style.itemCard} itemCard text-black lg:text-4xl text-xl`}
+            className={`${style.itemCard} itemCard p-10 text-black lg:text-4xl text-xl lg:w-96 w-auto mx-auto  `}
           >
             <motion.div
               initial={{ y: 60 }}
@@ -209,7 +210,7 @@ export default function HomePageLayout() {
                 delay: 4,
                 duration: 0.5,
               }}
-              className={`${style.itemCardData}`}
+              className={`${style.itemCardData} w-auto lg:h-40`}
             >
               {
                 "Unlimited upload Torrent options at your fingertips - upload and share anything you want! of your choice"
@@ -218,8 +219,7 @@ export default function HomePageLayout() {
           </motion.div>
         </div>
         </div>
-      </div>
     </motion.div>
-   </div>
+   </>
   );
 }
