@@ -32,7 +32,7 @@ export default function HomePageLayout() {
       ".itemCard",
       isMounted
         ? { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }
-        : { opacity: 0, scale: 0.3, y: 100, filter: "blur(20px)" },
+        : { opacity: 0, scale: 0.3, y: 100, filter: "blur(10px)" },
       {
         duration: 0.2,
         delay: isMounted ? staggerMenuItems : 0,
@@ -83,7 +83,7 @@ export default function HomePageLayout() {
                 width={10}
                 height={10}
                 alt="input cointainer svg"
-                className="absolute w-full h-full top-0 left-0 -z-10"
+                className="absolute w-auto h-full top-0 left-0 -z-10"
               />
               <motion.input
                 whileFocus={{
@@ -112,8 +112,9 @@ export default function HomePageLayout() {
         </motion.div>
 
         {/* action elements */}
+        <div className="">
         <div
-          className={`flex lg:flex-row flex-col w-full self-end justify-around lg:h-1/6 h-48 lg:gap-0 gap-96 items-center cursor-pointer  
+          className={`flex lg:flex-row flex-col w-full self-end justify-around lg:h-1/6 h-48 lg:gap-20 gap-40 items-center cursor-pointer  
           font-sans `}
         >
           <motion.div
@@ -125,7 +126,7 @@ export default function HomePageLayout() {
             whileTap={{
               scale: 1.5,
             }}
-            className={`${style.itemCard} itemCard text-white lg:text-4xl text-xl`}
+            className={`${style.itemCard} itemCard text-black lg:text-4xl text-xl`}
           >
             <motion.div
               initial={{ y: 60 }}
@@ -144,7 +145,7 @@ export default function HomePageLayout() {
                 delay: 4,
                 duration: 0.5,
               }}
-              className={`${style.itemCardData}`}
+              className={`${style.itemCardData} lg:w-auto w-40`}
             >
               {
                 "Unlimited movie options at your fingertips - watch anything you want!"
@@ -157,7 +158,7 @@ export default function HomePageLayout() {
               scale: 1.05,
               y: -20,
             }}
-            className={`${style.itemCard} itemCard text-white lg:text-4xl text-xl`}
+            className={`${style.itemCard} itemCard text-black lg:text-4xl text-xl`}
           >
             <motion.div
               initial={{ y: 60 }}
@@ -189,7 +190,7 @@ export default function HomePageLayout() {
               scale: 1.05,
               y: -20,
             }}
-            className={`${style.itemCard} itemCard text-white text-4xl`}
+            className={`${style.itemCard} itemCard text-black lg:text-4xl text-xl`}
           >
             <motion.div
               initial={{ y: 60 }}
@@ -215,6 +216,7 @@ export default function HomePageLayout() {
               }
             </motion.div>
           </motion.div>
+        </div>
         </div>
       </div>
     </motion.div>

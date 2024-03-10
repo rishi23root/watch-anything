@@ -5,17 +5,17 @@ import Link from "next/link";
 function Footer() {
   return (
     <>
-      <div className="py-4 mt-96 ">
-        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent"></div>
+      <div className="p-4  ">
+        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent "></div>
       </div>
-      <footer className="w-full sm:fcb">
+      <footer className="w-full sm:fcb p-5">
         <Link href={"/"}>
           <Image
             alt="logo"
-            className="w-full h-20 lg:w-auto lg:h-96"
+            className="w-full h-20 lg:w-auto lg:h-10"
             src="/svgs/logo.svg"
-            width={500}
-            height={500}
+            width={200}
+            height={200}
           />
         </Link>
         <div className="flex flex-col lg:w-[60%] w-full gap-2 h-full py-2 ">
@@ -27,7 +27,7 @@ function Footer() {
           </Link>
           <Link
             href={"/privacyPolicy"}
-            className="text-base font-medium text-center sm:text-right  text-white "
+            className="text-base font-medium text-center sm:text-right text-white"
           >
             Privacy Policy
           </Link>
@@ -39,7 +39,7 @@ function Footer() {
           </Link>
           <Link
             href={"mailto:contact@watchanything.online"}
-            className="text-base font-medium text-center sm:text-right  text-white "
+            className="text-base font-medium text-center sm:text-right text-white "
           >
             contact@watchanything.online
           </Link>
