@@ -38,7 +38,7 @@ function NavBtns(props: any) {
         </Link>
         <Link
           href={"/sign-up"}
-          className="flex items-center justify-center p-2 md:px-5 rounded-xl border-stone-500 bg-gradient-to-r from-blue-600 to-fuchsia-500 "
+          className="flex items-center justify-center p-2 md:px-5 rounded-xl border-stone-500 bg-gradient-to-r from-transparent to-gray-800 "
         >
           <div className="font-medium text-center lg:text-xl text-neutral-200">
             Sign up
@@ -57,7 +57,7 @@ function NavBtns(props: any) {
       return (
         <Link
           href={"/dashboard"}
-          className="p-2 md:px-5 rounded-xl border-stone-500 bg-gradient-to-r from-blue-600 to-fuchsia-500 fcc"
+          className="p-2 md:px-5 rounded-xl border-stone-500 bg-gradient-to-r from-transparent to-gray-800  fcc"
         >
           <div className="gap-2 font-medium text-center lg:text-xl text-neutral-200 fcc">
             Dashboard{" "}

@@ -1,5 +1,7 @@
 "use client";
 import AmimateText from "@/components/custom/AmimateText";
+import Nav from "@/components/Nav/index";
+import Footer from "@/components/Footer";
 import { Genjiro, heroMisake } from "@/fonts";
 import RenderCompleted from "@/hooks/RenderCompleted";
 import style from "@/styles/loading.module.css";
@@ -31,7 +33,7 @@ export default function HomePageLayout() {
       ".itemCard",
       isMounted
         ? { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }
-        : { opacity: 0, scale: 0.3, y: 100, filter: "blur(20px)" },
+        : { opacity: 0, scale: 0.3, y: 100, filter: "blur(10px)" },
       {
         duration: 0.2,
         delay: isMounted ? staggerMenuItems : 0,
@@ -40,21 +42,24 @@ export default function HomePageLayout() {
   }, [animate, isMounted, staggerMenuItems]);
 
   return (
+ 
+    <div className="lg:p-10 p-2">
+      <Nav/>
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, delay: 1.3 }}
-      className="absolute p-2 lg:p-12 w-full h-full top-0 text-black flex items-center justify-center"
+      className=" p-2 lg:p-0 w-full h-screen top-0 text-black flex items-center justify-center"
     >
       {/* landing page content */}
       <div
-        className={`flex flex-col items-center justify-between h-full w-full ${heroMisake.className} p-8`}
+        className={`flex flex-col lg:items-center justify-between h-full w-full ${heroMisake.className} p-8`}
         ref={scope}
       >
         {/* heading */}
         <motion.div
           {...topToPossition}
-          className={`${style.heroText} text-9xl shadow-sm ${Genjiro.className} border-gray-200 border-y-4 border-b-8 
+          className={`${style.heroText} lg:text-9xl text-2xl text-left shadow-sm ${Genjiro.className} border-gray-200 lg:border-y-4 lg:border-b-8 
           `}
           ref={heroTextRef}
         >
@@ -109,20 +114,20 @@ export default function HomePageLayout() {
         </motion.div>
 
         {/* action elements */}
+
         <div
-          className={`flex flex-row w-full self-end justify-around h-1/6 items-center cursor-pointer  
-          font-sans `}
+          className={`flex lg:flex-row flex-col w-full items-center justify-asround  lg:gap-20 gap-10 items-center cursor-pointer font-sans`}
         >
           <motion.div
             initial={{ opacity: 0 }}
             whileHover={{
-              scale: 1.12,
-              y: -70,
+              scale: 1.05,
+              y: -20,
             }}
             whileTap={{
               scale: 1.5,
             }}
-            className={`${style.itemCard} itemCard text-white text-4xl`}
+            className={`${style.itemCard} itemCard p-10 text-black lg:text-4xl text-xl lg:w-96 w-auto mx-auto `}
           >
             <motion.div
               initial={{ y: 60 }}
@@ -141,7 +146,7 @@ export default function HomePageLayout() {
                 delay: 4,
                 duration: 0.5,
               }}
-              className={`${style.itemCardData}`}
+              className={`${style.itemCardData} w-auto lg:h-40 lg:mt-5 mt-2`}
             >
               {
                 "Unlimited movie options at your fingertips - watch anything you want!"
@@ -151,10 +156,10 @@ export default function HomePageLayout() {
           <motion.div
             initial={{ opacity: 0 }}
             whileHover={{
-              scale: 1.12,
-              y: -70,
+              scale: 1.05,
+              y: -20,
             }}
-            className={`${style.itemCard} itemCard text-white text-4xl`}
+            className={`${style.itemCard} itemCard p-10 text-black lg:text-4xl text-xl lg:w-96 w-auto mx-auto `}
           >
             <motion.div
               initial={{ y: 60 }}
@@ -173,7 +178,7 @@ export default function HomePageLayout() {
                 delay: 4,
                 duration: 0.5,
               }}
-              className={`${style.itemCardData}`}
+              className={`${style.itemCardData} w-auto lg:h-40 lg:mt-5 mt-2`}
             >
               {
                 "Unlimited Torrent at your fingertips - watch, stream or download anything you want! of your choice"
@@ -183,10 +188,10 @@ export default function HomePageLayout() {
           <motion.div
             initial={{ opacity: 0 }}
             whileHover={{
-              scale: 1.12,
-              y: -70,
+              scale: 1.05,
+              y: -20,
             }}
-            className={`${style.itemCard} itemCard text-white text-4xl`}
+            className={`${style.itemCard} itemCard p-10 text-black lg:text-4xl text-xl lg:w-96 w-auto mx-auto  `}
           >
             <motion.div
               initial={{ y: 60 }}
@@ -205,7 +210,7 @@ export default function HomePageLayout() {
                 delay: 4,
                 duration: 0.5,
               }}
-              className={`${style.itemCardData}`}
+              className={`${style.itemCardData} w-auto lg:h-40 lg:mt-5 mt-2`}
             >
               {
                 "Unlimited upload Torrent options at your fingertips - upload and share anything you want! of your choice"
@@ -213,7 +218,8 @@ export default function HomePageLayout() {
             </motion.div>
           </motion.div>
         </div>
-      </div>
+        </div>
     </motion.div>
+   </div>
   );
 }

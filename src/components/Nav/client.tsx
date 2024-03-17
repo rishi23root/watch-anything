@@ -42,7 +42,7 @@ export function LogoElementWithLink() {
       <Image
         className="w-40 h-12 lg:w-72 lg:h-16"
         alt="main logo"
-        src="/logo.png"
+        src="/svgs/logo.svg"
         width={275}
         height={65}
         priority
