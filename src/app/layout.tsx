@@ -1,3 +1,4 @@
+import BgInteract from "@/components/custom/BgInteract";
 import TwScreenInfo from "@/components/custom/TwScreenInfo";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
@@ -81,9 +82,11 @@ export default function RootLayout({
             "min-h-screen",
             "min-w-full",
             "fc -z-10",
-            "bg-background bg-grid-white/20"
+            "bg-background"
           )}
         >
+          <BgInteract className="-z-10" />
+
           <div
             className={cn(
               "w-full h-full fixed top-0 left-0 -z-10",
