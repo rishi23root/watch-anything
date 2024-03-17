@@ -16,12 +16,13 @@ export default function ActionBtns({
       animate={{ opacity: 1 }}
       whileHover={{
         scale: 1.01,
-        y: -20,
+        y: -40,
+        type: "spring",
       }}
       whileTap={{
         scale: 1.1,
       }}
-      className={`${style.itemCard} itemCard gap-2 lg:gap-4 text-white w-full lg:w-1/3 h-fit lg:h-full  p-4`}
+      className={`${style.itemCard} itemCard gap-1 lg:gap-4 text-white w-full lg:w-1/3 h-fit lg:h-full  p-4`}
     >
       <motion.div
         initial={{ y: 60 }}
@@ -30,7 +31,7 @@ export default function ActionBtns({
           delay: 3.5,
           duration: 0.5,
         }}
-        className="text-2xl lg:text-4xl lg:pt-4 "
+        className="text-xl lg:text-4xl lg:pt-4 "
       >
         <AmimateText text={title} />
       </motion.div>
@@ -41,7 +42,7 @@ export default function ActionBtns({
           delay: 4,
           duration: 0.5,
         }}
-        className={`text-slate-200/80 text-center text-md lg:text-2xl`}
+        className={`text-slate-200/80 text-center text-sm lg:text-2xl`}
       >
         {description}
       </motion.div>

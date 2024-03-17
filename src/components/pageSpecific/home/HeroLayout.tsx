@@ -49,13 +49,13 @@ export default function HomePageLayout() {
     >
       {/* landing page content */}
       <div
-        className={`p-2 py-12 h-full w-full flex flex-1 flex-col justify-between items-center border border-white/30`}
+        className={`p-2 h-full w-full flex flex-1 flex-col justify-between items-center border border-white/30`}
         ref={scope}
       >
         {/* heading */}
         <motion.div
           {...topToPossition}
-          className={`${style.heroText} text-6xl text-center lg:text-9xl shadow-sm ${Genjiro.className} border-gray-200 border-y-4 border-b-8 z-10`}
+          className={`${style.heroText} text-6xl text-center lg:text-9xl shadow-sm ${Genjiro.className} border-gray-200 border-y-4 border-b-8 z-10 lg:mt-4`}
           ref={heroTextRef}
         >
           Watch Anything
@@ -73,7 +73,7 @@ export default function HomePageLayout() {
           >
             <div
               ref={inputTextRef}
-              className="w-full h-full flex flex-col items-start justify-center p-4 relative"
+              className="w-full h-full flex flex-col items-start justify-center relative p-1 lg:p-4 pb-2"
             >
               <Image
                 priority
@@ -81,7 +81,7 @@ export default function HomePageLayout() {
                 width={10}
                 height={10}
                 alt="input cointainer svg"
-                className="absolute w-full h-full top-0 left-0 z-5"
+                className="absolute w-full h-full top-0 left-0 z-5 "
               />
               <motion.input
                 whileFocus={{
@@ -89,19 +89,19 @@ export default function HomePageLayout() {
                   y: -10,
                   transition: { duration: 0.2 },
                 }}
-                className={`${style.inputTextField} text-md lg:text-3xl rounded-md w-full p-3 cursor-pointer z-10`}
+                className={`${style.inputTextField} text-sm lg:text-3xl rounded-sm inset-2 w-full p-3 cursor-pointer z-10 `}
                 type="text"
                 placeholder="Search for a movie by name or magnet url here..."
               />
               <div className="flex p-1 text-white opacity-50 center w-full justify-center">
-                Enter Your Thoughts
+                <div className="text-sm lg:text-md">Enter Your Thoughts</div>
                 <Image
                   priority
                   src={"/upArrow.svg"}
                   alt="up arrow"
                   width={10}
                   height={10}
-                  className="ml-2 w-auto h-auto"
+                  className="ml-2 lg:w-auto h-auto w-3"
                 />
               </div>
             </div>
@@ -110,7 +110,7 @@ export default function HomePageLayout() {
 
         {/* action elements */}
         <div
-          className={`flex lg:flex-row flex-col w-full items-center justify-asround  lg:gap-16 gap-10 lg:h-1/4 font-sans lg:px-12`}
+          className={`flex lg:flex-row flex-col w-full items-center justify-asround  lg:gap-16 gap-4 lg:h-1/4 font-sans lg:px-12`}
         >
           <ActionBtns
             title={"Explore Movies"}
