@@ -25,12 +25,12 @@
   outline: none;
   inset: 2;
   border-radius: 5px;
-  color: rgba(255, 255, 255, 0.705);
+  color: rgb(255, 255, 255);
   text-align: center;
   transition: all 0.3s ease-in-out;
 }
 .inputTextField::placeholder {
-  color: rgba(39, 39, 39, 0.339);
+  color: rgb(255, 255, 255);
 }
 
 .inputTextField:active,
@@ -39,7 +39,7 @@
 .inputTextField:focus {
   border: none;
   color: rgba(0, 0, 0, 0.7);
-  background-color: rgba(255, 255, 255, 0.767);
+  background-color: rgba(243, 243, 243, 0.248);
 
   --shdow_color: hsla(0, 0%, 0%, 0.2);
   box-shadow: 0 2.8px 2.2px var(--shdow_color), 0 6.7px 5.3px var(--shdow_color),
@@ -57,10 +57,9 @@
 .itemCard {
   border-radius: 0.6em;
   padding: 0.3em;
-  width: 25vw;
-  height: 12vw;
+
   --shdow_color: hsla(0, 0%, 0%, 0.3);
-  background-color: rgba(244, 244, 244, 0.2);
+  background-color: rgba(244, 244, 244, 0.45);
   /* box-shasdow: inset 0px 20px 42px 31px var(--shdow_color); */
   border-top: 2px solid rgba(255, 255, 255, 0.569);
   position: relative;
@@ -125,8 +124,9 @@
 }
 
 .itemCardData {
-  font-size: 0.7em;
+  font-size: 0.6em;
   line-height: 1.3em;
   text-align: center;
-  font-weight: 300;
+  font-weight: 500;
+  color: black;
 }
