@@ -91,13 +91,15 @@ export default function RootLayout({
               // add lienar gradient to background
               "bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-background from-50% to-transparent/20 to-100%"
             )}
-            style={{
-              backgroundColor: `rgba(0, 0, 0, 0.6)`,
-            }}
+            style={
+              {
+                // backgroundColor: `rgba(0, 0, 0, 0.6)`,
+              }
+            }
           >
             <NextTopLoader height={3} color="#3b82f6" />
-            {/* <TwScreenInfo /> */}
             {children}
+            {/* <TwScreenInfo /> */}
           </div>
         </body>
       </html>

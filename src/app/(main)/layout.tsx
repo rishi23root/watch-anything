@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { newUserLoginHandler } from "@/utils/pageLoad";
 import { Suspense } from "react";
 import TRPCProvider from "../../serverTRPC/Provider";
+import Footer from "@/components/Footer";
 
 export default async function RootLayout({
   children,
@@ -21,14 +22,13 @@ export default async function RootLayout({
       <Toaster />
       <Sonar />
       {/* main layout for all pages  */}
-      <div className="app xl:px-[11%] md:px-[5%] px-[2%] py-[2.5rem] flex flex-col lg:gap-20 gap-8 w-full">
+      <main className="app xl:px-[11%] md:px-[5%] px-[2%] gap-8 fc flex-1 flex-col min-h-screen">
+        <Nav pathname="/" />
         {/* <Nav isSignedIn={data ? true : false} pathname="/dashboard" /> */}
-        {/* pathname value is hardcoded here because it doesn't matter which path it is just not '/' */}
-      </div>
-      <main className="app xl:px-[11%] md:px-[5%] px-[2%] py-[2rem] gap-4 fc flex-1">
-        <div className="lg:gap-10 gap-4 fr flex-1 ">
+        <div className="lg:gap-10 gap-4 fr flex-1 flex-col">
           <Suspense>{children}</Suspense>
         </div>
+        <Footer />
       </main>
       <ShowErrorIfany />
       {/* <TwScreenInfo /> */}

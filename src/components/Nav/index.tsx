@@ -5,13 +5,12 @@ import { NavLinks } from "./utils";
 import {
   HamburgerOnMobile,
   LogoElementWithLink,
-  NotificationElement,
 } from "./client";
 import { Suspense } from "react";
 
 function Nav({ isSignedIn, pathname }: any) {
   return (
-    <div className="pr-2 fcb">
+    <div className="pr-2 fcb py-[2rem]">
       <LogoElementWithLink />
       <div className="hidden gap-3 fcc lg:gap-12 lg:text-xl font-base md:flex">
         <NavLinks isSignedIn={isSignedIn} pathname={pathname} />

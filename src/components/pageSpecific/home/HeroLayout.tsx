@@ -1,7 +1,6 @@
 "use client";
 import AmimateText from "@/components/custom/AmimateText";
 import Nav from "@/components/Nav/index";
-import Footer from "@/components/Footer";
 import { Genjiro, heroMisake } from "@/fonts";
 import RenderCompleted from "@/hooks/RenderCompleted";
 import style from "@/styles/loading.module.css";
@@ -33,7 +32,7 @@ export default function HomePageLayout() {
       ".itemCard",
       isMounted
         ? { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }
-        : { opacity: 0, scale: 0.3, y: 100, filter: "blur(10px)" },
+        : { opacity: 0, scale: 0.3, y: 100, filter: "blur(20px)" },
       {
         duration: 0.2,
         delay: isMounted ? staggerMenuItems : 0,
@@ -42,9 +41,6 @@ export default function HomePageLayout() {
   }, [animate, isMounted, staggerMenuItems]);
 
   return (
- 
-    <div className="lg:p-10 p-2">
-      <Nav/>
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -218,8 +214,7 @@ export default function HomePageLayout() {
             </motion.div>
           </motion.div>
         </div>
-        </div>
+      </div>
     </motion.div>
-   </div>
   );
 }

@@ -31,11 +31,7 @@ export function LogoElementWithLink() {
   // if on dashboard page then show / link
   // if any on any other page then show dashboard link
   const currentRedirectingPath =
-    pathname === "/"
-      ? "/dashboard"
-      : pathname === "/dashboard"
-      ? "/"
-      : "/dashboard";
+    pathname === "/" ? "/home" : pathname === "/home" ? "/" : "/home";
 
   return (
     <Link href={currentRedirectingPath}>

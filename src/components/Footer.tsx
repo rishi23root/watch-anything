@@ -5,10 +5,10 @@ import Link from "next/link";
 function Footer() {
   return (
     <>
-      <div className="p-4  ">
+      <div className="p-2">
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent "></div>
       </div>
-      <footer className="w-full sm:fcb p-5">
+      <footer className="w-full sm:fcb p-2">
         <Link href={"/"}>
           <Image
             alt="logo"
