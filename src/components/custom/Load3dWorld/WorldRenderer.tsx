@@ -17,7 +17,7 @@ const WorldRenderer = ({ bgfile, className }: WorldRendererProps) => {
   return (
     <Canvas className={`${style.threeDCanvasItself}`}>
       {/* <pointLight intensity={5} position={[0, 0, 0]} /> */}
-      <ambientLight intensity={1.5} position={[0, 0, 0]} />
+      <ambientLight intensity={0.6} position={[0, 0, 0]} />
       <mesh scale={[-1, 1, 1]} position={[0, 0, 0]}>
         <sphereGeometry args={[300, 60, 40]} />
         <meshStandardMaterial map={textureImage} side={THREE.BackSide} />

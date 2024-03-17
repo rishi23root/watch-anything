@@ -9,7 +9,7 @@ const HeroSection = dynamic(
   () => import("@/components/pageSpecific/home/HeroLayout")
 );
 
-const bgs = ["bg/cyber.jpg"];
+const bgs = ["bg/cyber.webp"];
 // const bgs = ["bg/cyber.jpg", "bg/alean.jpg", "bg/horror.jpg", "bg/nuclear.jpg"];
 
 export default async function Home() {
