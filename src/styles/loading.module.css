@@ -1,14 +1,3 @@
-.threeDCanvasItself {
-  --shdow_color: hsla(0, 0%, 0%, 0.3);
-
-  border: 2px solid (var(--shdow_color));
-  border-radius: 0.8rem;
-
-  box-shadow: 0 2.8px 2.2px var(--shdow_color), 0 6.7px 5.3px var(--shdow_color),
-    0 12.5px 10px var(--shdow_color), 0 22.3px 17.9px var(--shdow_color),
-    0 41.8px 33.4px var(--shdow_color), 0 100px 80px var(--shdow_color);
-}
-
 .heroText {
   --shdow_color: hsla(0, 0%, 0%, 0.3);
   color: rgba(255, 255, 255, 0.7);
@@ -20,8 +9,6 @@
 
 .inputTextField {
   background-color: rgba(244, 244, 244, 0.2);
-  font-size: 2em;
-  padding: 1em;
   outline: none;
   inset: 2;
   border-radius: 5px;
@@ -63,14 +50,14 @@
   padding: 0.3em;
 
   --shdow_color: hsla(0, 0%, 0%, 0.3);
-  background-color: rgba(244, 244, 244, 0.45);
+  background-color: rgba(244, 244, 244, 0.17);
   /* box-shasdow: inset 0px 20px 42px 31px var(--shdow_color); */
   border-top: 2px solid rgba(255, 255, 255, 0.569);
   position: relative;
   top: -4vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: top;
   align-items: center;
 }
 .itemCard:hover {
@@ -125,12 +112,4 @@
   50% {
     background-color: transparent;
   }
-}
-
-.itemCardData {
-  font-size: 0.6em;
-  line-height: 1.3em;
-  text-align: center;
-  font-weight: 500;
-  color: black;
 }

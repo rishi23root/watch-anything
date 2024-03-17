@@ -14,12 +14,9 @@ const SetBg = memo(({ bgfile }: setBgProps) => {
   // }, []);
 
   return (
-    <div className="absolute top-0 left-0 h-full w-full p-2 lg:p-12 z-1 transition-all duration-300 ease-in-out">
+    <div className="absolute top-0 left-0 h-full w-full lg:p-12 -z-5 transition-all duration-300 ease-in-out">
       <Suspense>
-        <WorldRenderer
-          className={`${style.threeDCanvasItself}`}
-          bgfile={bgfile}
-        />
+        <WorldRenderer className={`lg:rounded-2xl`} bgfile={bgfile} />
       </Suspense>
     </div>
   );

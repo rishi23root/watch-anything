@@ -2,7 +2,7 @@ import React from "react";
 
 function TwScreenInfo() {
   return (
-    <div className="fixed bottom-0 right-0 flex items-center p-2 m-2 text-3xl text-pink-600 bg-gray-300 border border-gray-400 rounded">
+    <div className="fixed bottom-0 right-0 flex items-center p-2 m-2 text-xl text-pink-600 bg-gray-300 border border-gray-400 rounded ">
       <svg className="inline w-auto h-6" viewBox="0 0 80 64" fill="none">
         <path
           fill="url(#paint0_linear)"

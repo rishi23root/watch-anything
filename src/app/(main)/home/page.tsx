@@ -1,8 +1,3 @@
-import SetBg from "@/components/custom/Load3dWorld/SetBg";
-import NoSSR from "@/hooks/NoSSR";
-import { auth } from "@clerk/nextjs";
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
 
 export default async function Test() {
   return (

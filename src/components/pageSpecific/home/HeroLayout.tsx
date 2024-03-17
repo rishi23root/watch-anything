@@ -1,6 +1,5 @@
 "use client";
 import AmimateText from "@/components/custom/AmimateText";
-import Nav from "@/components/Nav/index";
 import { Genjiro, heroMisake } from "@/fonts";
 import RenderCompleted from "@/hooks/RenderCompleted";
 import style from "@/styles/loading.module.css";
@@ -8,6 +7,7 @@ import { breathe, topToPossition } from "@/utils/motionPresets";
 import { motion, stagger, useAnimate } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import ActionBtns from "./ActionBtns";
 
 export default function HomePageLayout() {
   const heroTextRef = useRef<HTMLDivElement>(null);
@@ -21,9 +21,9 @@ export default function HomePageLayout() {
   useEffect(() => {
     if (heroTextRef.current && inputTextRef.current) {
       const textWidth = heroTextRef.current.clientWidth;
-      const inputWidth = inputTextRef.current.clientWidth;
-      // set the text witht the input width
-      inputTextRef.current.style.width = `${textWidth + 50}px`;
+      if (window.innerWidth > 768) {
+        inputTextRef.current.style.width = `${textWidth + 250}px`;
+      }
     }
   }, []);
 
@@ -45,18 +45,17 @@ export default function HomePageLayout() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, delay: 1.3 }}
-      className=" p-2 lg:p-0 w-full h-screen top-0 text-black flex items-center justify-center"
+      className="p-2 lg:p-12 w-full h-screen "
     >
       {/* landing page content */}
       <div
-        className={`flex flex-col lg:items-center justify-between h-full w-full ${heroMisake.className} p-8`}
+        className={`p-2 py-12 h-full w-full flex flex-1 flex-col justify-between items-center border border-white/30`}
         ref={scope}
       >
         {/* heading */}
         <motion.div
           {...topToPossition}
-          className={`${style.heroText} lg:text-9xl text-2xl text-left shadow-sm ${Genjiro.className} border-gray-200 lg:border-y-4 lg:border-b-8 
-          `}
+          className={`${style.heroText} text-6xl text-center lg:text-9xl shadow-sm ${Genjiro.className} border-gray-200 border-y-4 border-b-8 z-10`}
           ref={heroTextRef}
         >
           Watch Anything
@@ -82,7 +81,7 @@ export default function HomePageLayout() {
                 width={10}
                 height={10}
                 alt="input cointainer svg"
-                className="absolute w-full h-full top-0 left-0 -z-10"
+                className="absolute w-full h-full top-0 left-0 z-5"
               />
               <motion.input
                 whileFocus={{
@@ -90,7 +89,7 @@ export default function HomePageLayout() {
                   y: -10,
                   transition: { duration: 0.2 },
                 }}
-                className={`${style.inputTextField} rounded-md p-2 w-full h-12 }`}
+                className={`${style.inputTextField} text-md lg:text-3xl rounded-md w-full p-3 cursor-pointer z-10`}
                 type="text"
                 placeholder="Search for a movie by name or magnet url here..."
               />
@@ -110,109 +109,27 @@ export default function HomePageLayout() {
         </motion.div>
 
         {/* action elements */}
-
         <div
-          className={`flex lg:flex-row flex-col w-full items-center justify-asround  lg:gap-20 gap-10 items-center cursor-pointer font-sans`}
+          className={`flex lg:flex-row flex-col w-full items-center justify-asround  lg:gap-16 gap-10 lg:h-1/4 font-sans lg:px-12`}
         >
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileHover={{
-              scale: 1.05,
-              y: -20,
-            }}
-            whileTap={{
-              scale: 1.5,
-            }}
-            className={`${style.itemCard} itemCard p-10 text-black lg:text-4xl text-xl lg:w-96 w-auto mx-auto `}
-          >
-            <motion.div
-              initial={{ y: 60 }}
-              animate={{ y: 0 }}
-              transition={{
-                delay: 3.5,
-                duration: 0.5,
-              }}
-            >
-              <AmimateText text={"Explore Movies"} />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.8 }}
-              transition={{
-                delay: 4,
-                duration: 0.5,
-              }}
-              className={`${style.itemCardData} w-auto lg:h-40 lg:mt-5 mt-2`}
-            >
-              {
-                "Unlimited movie options at your fingertips - watch anything you want!"
-              }
-            </motion.div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileHover={{
-              scale: 1.05,
-              y: -20,
-            }}
-            className={`${style.itemCard} itemCard p-10 text-black lg:text-4xl text-xl lg:w-96 w-auto mx-auto `}
-          >
-            <motion.div
-              initial={{ y: 60 }}
-              animate={{ y: 0 }}
-              transition={{
-                delay: 3.5,
-                duration: 0.5,
-              }}
-            >
-              <AmimateText text={"Browse Torrent"} />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.8 }}
-              transition={{
-                delay: 4,
-                duration: 0.5,
-              }}
-              className={`${style.itemCardData} w-auto lg:h-40 lg:mt-5 mt-2`}
-            >
-              {
-                "Unlimited Torrent at your fingertips - watch, stream or download anything you want! of your choice"
-              }
-            </motion.div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileHover={{
-              scale: 1.05,
-              y: -20,
-            }}
-            className={`${style.itemCard} itemCard p-10 text-black lg:text-4xl text-xl lg:w-96 w-auto mx-auto  `}
-          >
-            <motion.div
-              initial={{ y: 60 }}
-              animate={{ y: 0 }}
-              transition={{
-                delay: 3.5,
-                duration: 0.5,
-              }}
-            >
-              <AmimateText text={"Upload Torrent"} />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.8 }}
-              transition={{
-                delay: 4,
-                duration: 0.5,
-              }}
-              className={`${style.itemCardData} w-auto lg:h-40 lg:mt-5 mt-2`}
-            >
-              {
-                "Unlimited upload Torrent options at your fingertips - upload and share anything you want! of your choice"
-              }
-            </motion.div>
-          </motion.div>
+          <ActionBtns
+            title={"Explore Movies"}
+            description={
+              "Unlimited movie options at your fingertips - watch anything you want!"
+            }
+          />
+          <ActionBtns
+            title={"Browse Torrent"}
+            description={
+              "Unlimited Torrent at your fingertips - watch, stream or download anything you want! of your choice"
+            }
+          />
+          <ActionBtns
+            title={"Upload Torrent"}
+            description={
+              "Unlimited upload Torrent options at your fingertips - upload and share anything you want! of your choice"
+            }
+          />
         </div>
       </div>
     </motion.div>

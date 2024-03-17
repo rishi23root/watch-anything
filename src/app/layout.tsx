@@ -1,3 +1,4 @@
+import TwScreenInfo from "@/components/custom/TwScreenInfo";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -79,28 +80,20 @@ export default function RootLayout({
             poppins.className,
             "min-h-screen",
             "min-w-full",
-            "relative",
             "fc -z-10",
             "bg-background bg-grid-white/20"
           )}
         >
           <div
             className={cn(
-              "w-full h-full absolute ",
-              "-z-5",
+              "w-full h-full fixed top-0 left-0 -z-10",
               // add lienar gradient to background
               "bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-background from-50% to-transparent/20 to-100%"
             )}
-            style={
-              {
-                // backgroundColor: `rgba(0, 0, 0, 0.6)`,
-              }
-            }
-          >
-            <NextTopLoader height={3} color="#3b82f6" />
-            {children}
-            {/* <TwScreenInfo /> */}
-          </div>
+          />
+          <NextTopLoader height={3} color="#3b82f6" />
+          {children}
+          {/* <TwScreenInfo /> */}
         </body>
       </html>
     </ClerkProvider>
