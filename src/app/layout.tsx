@@ -1,20 +1,11 @@
-import NoSSR from "@/hooks/NoSSR";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/react";
 import { clsx } from "clsx";
-import type { Metadata } from "next";
-import dynamic from "next/dynamic";
+import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
-import { Suspense } from "react";
-import type { Viewport } from "next";
-const BubbleUnderlay = dynamic(
-  () => import("@/components/custom/BubbelUnderLay")
-);
 
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
@@ -23,8 +14,6 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  // Also supported by less commonly used
-  // interactiveWidget: 'resizes-visual',
 };
 
 export const metadata: Metadata = {
@@ -83,26 +72,33 @@ export default function RootLayout({
         baseTheme: dark,
       }}
     >
-      <html lang="en">
+      <html lang="en" className="dark">
         <body
           suppressHydrationWarning={true}
           className={clsx(
             poppins.className,
-            "bg-[#12141D]",
-            "text-[#E0E0E0]",
             "min-h-screen",
             "min-w-full",
-            "relative ",
-            "fc border "
+            "relative",
+            "fc -z-10",
+            "bg-background bg-grid-white/20"
           )}
         >
-          <NextTopLoader height={3} color="#3b82f6" />
-          {/* 
-          <SpeedInsights />
-          <Analytics />
-
-        <TwScreenInfo /> */}
-          {children}
+          <div
+            className={cn(
+              "w-full h-full absolute ",
+              "-z-5",
+              // add lienar gradient to background
+              "bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-background from-50% to-transparent/20 to-100%"
+            )}
+            style={{
+              backgroundColor: `rgba(0, 0, 0, 0.6)`,
+            }}
+          >
+            <NextTopLoader height={3} color="#3b82f6" />
+            {/* <TwScreenInfo /> */}
+            {children}
+          </div>
         </body>
       </html>
     </ClerkProvider>
