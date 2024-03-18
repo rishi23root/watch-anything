@@ -89,6 +89,7 @@ export default function HomePageLayout() {
                   y: -10,
                   transition: { duration: 0.2 },
                 }}
+                onChange={(e) => console.log(e.target.value)}
                 className={`${style.inputTextField} text-sm lg:text-3xl rounded-sm inset-2 w-full p-3 cursor-pointer z-10 `}
                 type="text"
                 placeholder="Search for a movie by name or magnet url here..."

@@ -63,3 +63,9 @@ export function getAverageRGB(bgfile: string): Promise<typeRBG> {
     };
   });
 }
+
+
+// handel landing page search bar
+export function landingSearch(inputs: string) {
+  // pass
+} 
