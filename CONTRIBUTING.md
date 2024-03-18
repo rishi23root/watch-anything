@@ -37,10 +37,10 @@ Thank you for your interest in contributing to our project! We welcome contribut
 
 ## Code of Conduct
 
-- Please adhere to our [Code of Conduct](https://github.com/rishi23root/resume-editor/blob/main/CODE_OF_CONDUCT.md) in all interactions.
+- Please adhere to our [Code of Conduct](https://github.com/rishi23root/watch-anything/blob/main/CODE_OF_CONDUCT.md) in all interactions.
 
 ## License
 
-- By contributing, you agree that your contributions will be licensed under the project's [license](https://github.com/rishi23root/resume-editor/blob/main/LICENSE).
+- By contributing, you agree that your contributions will be licensed under the project's [license](https://github.com/rishi23root/watch-anything/blob/main/LICENSE).
 
 Thank you for contributing to Watch Anything! Your help is greatly appreciated.
