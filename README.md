@@ -1,7 +1,7 @@
 
 # Watch Anything
 
-check out our [website] (https://watchanything.online/)
+check out our (website) [https://watchanything.online/]
  
 Welcome to watch Anything...
 
@@ -10,7 +10,8 @@ This README.md spills the tea on our project's journey, cool features, and the f
 ## Getting Started
 
 ### Prerequisites
-- List any prerequisites here.
+- Node
+- PNPM
 
 ### Installation
 1. Fork this repository.
@@ -29,7 +30,7 @@ This README.md spills the tea on our project's journey, cool features, and the f
 6. Create a pull request (PR) from your branch to the `dev` branch on GitHub.
 
 ## License
-This project is licensed under the `[BSD-3-Clause license]` - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the `[BSD-3-Clause license]` - see the [LICENSE.md](LICENSE) file for details.
 #
 
 Thank you for contributing to Watch Anything!
