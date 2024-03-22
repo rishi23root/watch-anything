@@ -1,76 +1,27 @@
 
 // contain all the api for the pirate bay and cerculate the url if fails in the request form one end point to another
-type filterType = {
-    top100: string,
-    latest: string,
-}
 
-type Endpoints = {
-    audio: filterType
-    movie: filterType
-    tvShow: filterType
-    applications: {
-        windows: filterType
-        mac: filterType
-        unix: filterType
-    },
-    games: filterType
-    porn: filterType
-    ebook: filterType
-}
+import { indexingData } from "@/JSONapiData/indexing";
+import { Endpoints, filterType, indexedMagnet } from "@/types/indexing";
+import xmlToJson from "./xmlToJson";
+
 
 class PirateBayApi {
     currentActiveUrl: string;
-    endpoints: (url: string) => Endpoints;
     allActiveSites: Array<string>;
     currentUrlIndex: number;
     isApiActive: boolean;
     lastChecked: number;
+    isTesting: boolean;
+    jsonData: typeof indexingData;
 
-    constructor() {
+    constructor(mode?: number) {
+        /**
+         * @param {number}           
+         *  mode "0 production mode".
+         *  mode "1 testing mode".
+         */
         this.currentActiveUrl = '';
-        this.endpoints = (url: string) => (
-            {
-                audio: {
-                    top100: `${url}/rss/top100/101`,
-                    latest: `${url}/rss/new/101`,
-                },
-                movie: {
-                    top100: `${url}/rss/top100/201`,
-                    latest: `${url}/rss/new/201`,
-                },
-                tvShow: {
-                    top100: `${url}/rss/top100/205`,
-                    latest: `${url}/rss/new/205`
-                },
-                applications: {
-                    windows: {
-                        top100: `${url}/rss/top100/301`,
-                        latest: `${url}/rss/new/301`
-                    },
-                    mac: {
-                        top100: `${url}/rss/top100/302`,
-                        latest: `${url}/rss/new/302`
-                    },
-                    unix: {
-                        top100: `${url}/rss/top100/303`,
-                        latest: `${url}/rss/new/303`
-                    }
-                },
-                games: {
-                    top100: `${url}/rss/top100/401`,
-                    latest: `${url}/rss/new/401`
-                },
-                porn: {
-                    top100: `${url}/rss/top100/501`,
-                    latest: `${url}/rss/new/501`
-                },
-                ebook: {
-                    top100: `${url}/rss/top100/601`,
-                    latest: `${url}/rss/new/601`
-                },
-            }
-        );
         this.allActiveSites = [
             'https://thepiratebay.party',
             'https://pbays.pw',
@@ -86,31 +37,84 @@ class PirateBayApi {
         this.currentUrlIndex = 0;
         this.isApiActive = false;
         this.lastChecked = -Infinity;
+        this.isTesting = mode === 1 ? true : false;
+        this.jsonData = {} as typeof indexingData;
+        if (this.isTesting) {
+            this.jsonData = indexingData;
+        }
     }
+
+    endpoints = (url: string) => (
+        {
+            audio: {
+                top100: `${url}/rss/top100/101`,
+                latest: `${url}/rss/new/101`,
+            },
+            movie: {
+                top100: `${url}/rss/top100/201`,
+                latest: `${url}/rss/new/201`,
+            },
+            tvShow: {
+                top100: `${url}/rss/top100/205`,
+                latest: `${url}/rss/new/205`
+            },
+            applications: {
+                windows: {
+                    top100: `${url}/rss/top100/301`,
+                    latest: `${url}/rss/new/301`
+                },
+                mac: {
+                    top100: `${url}/rss/top100/302`,
+                    latest: `${url}/rss/new/302`
+                },
+                unix: {
+                    top100: `${url}/rss/top100/303`,
+                    latest: `${url}/rss/new/303`
+                }
+            },
+            games: {
+                top100: `${url}/rss/top100/401`,
+                latest: `${url}/rss/new/401`
+            },
+            porn: {
+                top100: `${url}/rss/top100/501`,
+                latest: `${url}/rss/new/501`
+            },
+            ebook: {
+                top100: `${url}/rss/top100/601`,
+                latest: `${url}/rss/new/601`
+            },
+        }
+    );
 
     api = async () => {
         /**
          * return the api object
          * @return {object}           api "api object".
         */
-        // check if the api is active if not active then return the api object set cache for 1 hour
-        // console.log(!this.isApiActive, (Date.now() - this.lastChecked) > (1000*60*60));
 
-        if (!this.isApiActive || (Date.now() - this.lastChecked) > (1000 * 60 * 60)) {
-            // revalidate the api if the api is not active or the last checked is less than 1 hour
-            console.log("revalidating... api endpoints");
-            await this.updateActiveUrl()
-        } else {
-            console.log("api endpoints are valid using cache");
+
+        if (this.isTesting) {
+            return this.jsonData;
         }
+        else {
+            // check if the api is active if not active then return the api object set cache for 1 hour
+            // console.log(!this.isApiActive, (Date.now() - this.lastChecked) > (1000*60*60));
 
-        if (this.isApiActive) {
-            return this.endpoints(this.currentActiveUrl) as Endpoints;
-        } else {
-            return {} as Endpoints;
+            if (!this.isApiActive || (Date.now() - this.lastChecked) > (1000 * 60 * 60)) {
+                // revalidate the api if the api is not active or the last checked is less than 1 hour
+                console.log("revalidating... api endpoints");
+                await this.updateActiveUrl()
+            } else {
+                console.log("api endpoints are valid using cache");
+            }
+
+            if (this.isApiActive) {
+                return this.endpoints(this.currentActiveUrl) as Endpoints<filterType<string>>;
+            }
+            return {} as Endpoints<filterType<string>>;
         }
     }
-
 
     // make request to the api and check if site is active 
     checkIfActive = async (url: string) => {
@@ -170,6 +174,46 @@ class PirateBayApi {
         if (i > this.allActiveSites.length) {
             // set the isapiactive to false if no url is working
             this.isApiActive = false;
+        }
+    }
+
+    getIndexing = async (url: string | indexedMagnet[], limit: number = -1) => {
+        /**
+         * @param {string}           url "url to test".
+         * @param {number}           limit "limit the number of data".
+         * @return {Array<indexedMagnet>}           return the array of indexedMagnet.
+        // extract the required data from the api and parse it to json
+        */
+
+        if (this.isTesting) {
+            return url as indexedMagnet[] // here url is data for testing only
+
+        }
+
+        const response = await fetch(url as string, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/xml',
+                'User-Agent': 'Mozilla/5.0'
+            },
+        });
+        const text = await response.text();
+        if (text.includes('<meta name="viewport"')) {
+            return [] as Array<indexedMagnet>;
+        }
+
+        const myJson = await xmlToJson(text)
+        // check if the data is empty
+        if (myJson.rss.channel.item.length === 0) {
+            return [] as Array<indexedMagnet>;
+        } else {
+
+            if (limit === -1) {
+                return myJson.rss.channel.item as Array<indexedMagnet>;
+            }
+            // console.log(myJson.rss.channel.item.slice(0, 1)[0]);
+
+            return myJson.rss.channel.item.slice(0, limit) as Array<indexedMagnet>;
         }
     }
 }

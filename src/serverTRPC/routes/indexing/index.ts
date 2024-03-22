@@ -1,44 +1,13 @@
 import { procedure, router } from "@/serverTRPC/trpc";
-import { indexedMagnet } from "@/types";
+import { indexedMagnet } from "@/types/indexing";
 import PirateBayApi from "@/utils/pirateBayApi";
-import xmlToJson from "@/utils/xmlToJson";
 
+const pirateBay = new PirateBayApi(1);
 
-const pirateBay = new PirateBayApi();
-
-const getIndexing = async (url: string, limit: number = -1) => {
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/xml',
-            'User-Agent': 'Mozilla/5.0'
-        },
-    });
-    const text = await response.text();
-    if (text.includes('<meta name="viewport"')) {
-        return [] as Array<indexedMagnet>;
-    }
-
-    const myJson = await xmlToJson(text)
-    // check if the data is empty
-    if (myJson.rss.channel.item.length === 0) {
-        return [] as Array<indexedMagnet>;
-    } else {
-
-        if (limit === -1) {
-            return myJson.rss.channel.item as Array<indexedMagnet>;
-        }
-        // console.log(myJson.rss.channel.item.slice(0, 1)[0]);
-
-        return myJson.rss.channel.item.slice(0, limit) as Array<indexedMagnet>;
-    }
-}
-
-const getData = async (url: string, limit: number = -1) => {
-    const indexes = await getIndexing(url, limit)
+const getData = async (url: string | indexedMagnet[], limit: number = -1) => {
+    const indexes = await pirateBay.getIndexing(url, limit)
     // now on the basis of title make a request to get the thumbnail api
     // https://www.themoviedb.org/
-
     return indexes
 }
 
@@ -48,67 +17,11 @@ export const indexRouter = router({
     movie: router({
         top100: procedure.query(async () => {
             const endpoints = await pirateBay.api();
-            return await getData(endpoints?.tvShow.top100, limit)
+            return await getData(endpoints?.movie.top100, limit)
         }),
         latest: procedure.query(async () => {
             const endpoints = await pirateBay.api();
-            return await getData(endpoints?.tvShow.latest, limit)
-            // return [{
-            //     title: 'Photographer S01E06 1080p HEVC x265-MeGusta',
-            //     link: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta',
-            //     comments: 'https://thepiratebay.party/torrent/74885681',
-            //     pubDate: 'Tue, 19 Mar 2024 23:08:31 +0100',
-            //     category: 'Video / TV shows',
-            //     'dc:creator': 'TvTeam',
-            //     guid: 'https://thepiratebay.party/torrent/74885681/',
-            //     torrent: {
-            //         contentLength: '696342061',
-            //         infoHash: '163DF4B0ED2F91E0B55887D2B695C4235C2A60E4',
-            //         magnetURI: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&amp;dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta'
-            //     }
-            // },
-            // {
-            //     title: 'Photographer S01E06 1080p HEVC x265-MeGusta',
-            //     link: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta',
-            //     comments: 'https://thepiratebay.party/torrent/74885681',
-            //     pubDate: 'Tue, 19 Mar 2024 23:08:31 +0100',
-            //     category: 'Video / TV shows',
-            //     'dc:creator': 'TvTeam',
-            //     guid: 'https://thepiratebay.party/torrent/74885681/',
-            //     torrent: {
-            //         contentLength: '696342061',
-            //         infoHash: '163DF4B0ED2F91E0B55887D2B695C4235C2A60E4',
-            //         magnetURI: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&amp;dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta'
-            //     }
-            // },
-            // {
-            //     title: 'Photographer S01E06 1080p HEVC x265-MeGusta',
-            //     link: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta',
-            //     comments: 'https://thepiratebay.party/torrent/74885681',
-            //     pubDate: 'Tue, 19 Mar 2024 23:08:31 +0100',
-            //     category: 'Video / TV shows',
-            //     'dc:creator': 'TvTeam',
-            //     guid: 'https://thepiratebay.party/torrent/74885681/',
-            //     torrent: {
-            //         contentLength: '696342061',
-            //         infoHash: '163DF4B0ED2F91E0B55887D2B695C4235C2A60E4',
-            //         magnetURI: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&amp;dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta'
-            //     }
-            // },
-            // {
-            //     title: 'Photographer S01E06 1080p HEVC x265-MeGusta',
-            //     link: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta',
-            //     comments: 'https://thepiratebay.party/torrent/74885681',
-            //     pubDate: 'Tue, 19 Mar 2024 23:08:31 +0100',
-            //     category: 'Video / TV shows',
-            //     'dc:creator': 'TvTeam',
-            //     guid: 'https://thepiratebay.party/torrent/74885681/',
-            //     torrent: {
-            //         contentLength: '696342061',
-            //         infoHash: '163DF4B0ED2F91E0B55887D2B695C4235C2A60E4',
-            //         magnetURI: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&amp;dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta'
-            //     }
-            // }]
+            return await getData(endpoints?.movie.latest, limit)
         })
     }),
     tvShow: router({
@@ -173,4 +86,14 @@ export const indexRouter = router({
             })
         })
     }),
+    // ebooks: router({
+    //     top100: procedure.query(async () => {
+    //         const endpoints = await pirateBay.api();
+    //         return await getData(endpoints?.ebook.top100, limit)
+    //     }),
+    //     latest: procedure.query(async () => {
+    //         const endpoints = await pirateBay.api();
+    //         return await getData(endpoints?.ebook.latest, limit)
+    //     })
+    // }),
 });
