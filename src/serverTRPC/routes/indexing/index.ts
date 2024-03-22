@@ -3,9 +3,10 @@ import { indexedMagnet } from "@/types";
 import PirateBayApi from "@/utils/pirateBayApi";
 import xmlToJson from "@/utils/xmlToJson";
 
+
 const pirateBay = new PirateBayApi();
 
-const getData = async (url: string, limit: number = -1) => {
+const getIndexing = async (url: string, limit: number = -1) => {
     const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -33,45 +34,15 @@ const getData = async (url: string, limit: number = -1) => {
     }
 }
 
-async function getTheFirstLoad(limit: number) {
-    const endpoints = await pirateBay.api();
-    // const data = await getData(endpoints?.movie.top100, limit)
+const getData = async (url: string, limit: number = -1) => {
+    const indexes = await getIndexing(url, limit)
+    // now on the basis of title make a request to get the thumbnail api
+    // https://www.themoviedb.org/
 
-    return {
-        movie: {
-            top100: await getData(endpoints?.movie.top100, limit),
-            latest: await getData(endpoints?.movie.latest, limit)
-        },
-        tvShow: {
-            top100: await getData(endpoints?.tvShow.top100, limit),
-            latest: await getData(endpoints?.tvShow.latest, limit)
-        },
-        audio: {
-            top100: await getData(endpoints?.audio.top100, limit),
-            latest: await getData(endpoints?.audio.latest, limit)
-        },
-        games: {
-            top100: await getData(endpoints?.games.top100, limit),
-            latest: await getData(endpoints?.games.latest, limit)
-        },
-        applications: {
-            windows: {
-                top100: await getData(endpoints?.applications.windows.top100, limit),
-                latest: await getData(endpoints?.applications.windows.latest, limit)
-            },
-            mac: {
-                top100: await getData(endpoints?.applications.mac.top100, limit),
-                latest: await getData(endpoints?.applications.mac.latest, limit)
-            },
-            unix: {
-                top100: await getData(endpoints?.applications.unix.top100, limit),
-                latest: await getData(endpoints?.applications.unix.latest, limit)
-            }
-        }
-    }
+    return indexes
 }
 
-const limit = 2
+const limit = 15
 
 export const indexRouter = router({
     movie: router({
@@ -80,64 +51,126 @@ export const indexRouter = router({
             return await getData(endpoints?.tvShow.top100, limit)
         }),
         latest: procedure.query(async () => {
-            // const endpoints = await pirateBay.api();
-            // return await getData(endpoints?.tvShow.latest, limit)
-            return [{
-                title: 'Photographer S01E06 1080p HEVC x265-MeGusta',
-                link: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta',
-                comments: 'https://thepiratebay.party/torrent/74885681',
-                pubDate: 'Tue, 19 Mar 2024 23:08:31 +0100',
-                category: 'Video / TV shows',
-                'dc:creator': 'TvTeam',
-                guid: 'https://thepiratebay.party/torrent/74885681/',
-                torrent: {
-                    contentLength: '696342061',
-                    infoHash: '163DF4B0ED2F91E0B55887D2B695C4235C2A60E4',
-                    magnetURI: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&amp;dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta'
-                }
-            },
-            {
-                title: 'Photographer S01E06 1080p HEVC x265-MeGusta',
-                link: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta',
-                comments: 'https://thepiratebay.party/torrent/74885681',
-                pubDate: 'Tue, 19 Mar 2024 23:08:31 +0100',
-                category: 'Video / TV shows',
-                'dc:creator': 'TvTeam',
-                guid: 'https://thepiratebay.party/torrent/74885681/',
-                torrent: {
-                    contentLength: '696342061',
-                    infoHash: '163DF4B0ED2F91E0B55887D2B695C4235C2A60E4',
-                    magnetURI: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&amp;dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta'
-                }
-            },
-            {
-                title: 'Photographer S01E06 1080p HEVC x265-MeGusta',
-                link: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta',
-                comments: 'https://thepiratebay.party/torrent/74885681',
-                pubDate: 'Tue, 19 Mar 2024 23:08:31 +0100',
-                category: 'Video / TV shows',
-                'dc:creator': 'TvTeam',
-                guid: 'https://thepiratebay.party/torrent/74885681/',
-                torrent: {
-                    contentLength: '696342061',
-                    infoHash: '163DF4B0ED2F91E0B55887D2B695C4235C2A60E4',
-                    magnetURI: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&amp;dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta'
-                }
-            },
-            {
-                title: 'Photographer S01E06 1080p HEVC x265-MeGusta',
-                link: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta',
-                comments: 'https://thepiratebay.party/torrent/74885681',
-                pubDate: 'Tue, 19 Mar 2024 23:08:31 +0100',
-                category: 'Video / TV shows',
-                'dc:creator': 'TvTeam',
-                guid: 'https://thepiratebay.party/torrent/74885681/',
-                torrent: {
-                    contentLength: '696342061',
-                    infoHash: '163DF4B0ED2F91E0B55887D2B695C4235C2A60E4',
-                    magnetURI: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&amp;dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta'
-                }
-            }]
+            const endpoints = await pirateBay.api();
+            return await getData(endpoints?.tvShow.latest, limit)
+            // return [{
+            //     title: 'Photographer S01E06 1080p HEVC x265-MeGusta',
+            //     link: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta',
+            //     comments: 'https://thepiratebay.party/torrent/74885681',
+            //     pubDate: 'Tue, 19 Mar 2024 23:08:31 +0100',
+            //     category: 'Video / TV shows',
+            //     'dc:creator': 'TvTeam',
+            //     guid: 'https://thepiratebay.party/torrent/74885681/',
+            //     torrent: {
+            //         contentLength: '696342061',
+            //         infoHash: '163DF4B0ED2F91E0B55887D2B695C4235C2A60E4',
+            //         magnetURI: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&amp;dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta'
+            //     }
+            // },
+            // {
+            //     title: 'Photographer S01E06 1080p HEVC x265-MeGusta',
+            //     link: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta',
+            //     comments: 'https://thepiratebay.party/torrent/74885681',
+            //     pubDate: 'Tue, 19 Mar 2024 23:08:31 +0100',
+            //     category: 'Video / TV shows',
+            //     'dc:creator': 'TvTeam',
+            //     guid: 'https://thepiratebay.party/torrent/74885681/',
+            //     torrent: {
+            //         contentLength: '696342061',
+            //         infoHash: '163DF4B0ED2F91E0B55887D2B695C4235C2A60E4',
+            //         magnetURI: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&amp;dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta'
+            //     }
+            // },
+            // {
+            //     title: 'Photographer S01E06 1080p HEVC x265-MeGusta',
+            //     link: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta',
+            //     comments: 'https://thepiratebay.party/torrent/74885681',
+            //     pubDate: 'Tue, 19 Mar 2024 23:08:31 +0100',
+            //     category: 'Video / TV shows',
+            //     'dc:creator': 'TvTeam',
+            //     guid: 'https://thepiratebay.party/torrent/74885681/',
+            //     torrent: {
+            //         contentLength: '696342061',
+            //         infoHash: '163DF4B0ED2F91E0B55887D2B695C4235C2A60E4',
+            //         magnetURI: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&amp;dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta'
+            //     }
+            // },
+            // {
+            //     title: 'Photographer S01E06 1080p HEVC x265-MeGusta',
+            //     link: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta',
+            //     comments: 'https://thepiratebay.party/torrent/74885681',
+            //     pubDate: 'Tue, 19 Mar 2024 23:08:31 +0100',
+            //     category: 'Video / TV shows',
+            //     'dc:creator': 'TvTeam',
+            //     guid: 'https://thepiratebay.party/torrent/74885681/',
+            //     torrent: {
+            //         contentLength: '696342061',
+            //         infoHash: '163DF4B0ED2F91E0B55887D2B695C4235C2A60E4',
+            //         magnetURI: 'magnet:?xt=urn:btih:163DF4B0ED2F91E0B55887D2B695C4235C2A60E4&amp;dn=Photographer+S01E06+1080p+HEVC+x265-MeGusta'
+            //     }
+            // }]
+        })
+    }),
+    tvShow: router({
+        top100: procedure.query(async () => {
+            const endpoints = await pirateBay.api();
+            return await getData(endpoints?.tvShow.top100, limit)
+        }),
+        latest: procedure.query(async () => {
+            const endpoints = await pirateBay.api();
+            return await getData(endpoints?.tvShow.latest, limit)
+        })
+    }),
+    audio: router({
+        top100: procedure.query(async () => {
+            const endpoints = await pirateBay.api();
+            return await getData(endpoints?.audio.top100, limit)
+        }),
+        latest: procedure.query(async () => {
+            const endpoints = await pirateBay.api();
+            return await getData(endpoints?.audio.latest, limit)
+        })
+    }),
+    games: router({
+        top100: procedure.query(async () => {
+            const endpoints = await pirateBay.api();
+            return await getData(endpoints?.games.top100, limit)
+        }),
+        latest: procedure.query(async () => {
+            const endpoints = await pirateBay.api();
+            return await getData(endpoints?.games.latest, limit)
+        })
+    }),
+    applications: router({
+        windows: router({
+            top100: procedure.query(async () => {
+                const endpoints = await pirateBay.api();
+                return await getData(endpoints?.applications.windows.top100, limit)
+            }),
+            latest: procedure.query(async () => {
+                const endpoints = await pirateBay.api();
+                return await getData(endpoints?.applications.windows.latest, limit)
+            })
+        }),
+        mac: router({
+            top100: procedure.query(async () => {
+                const endpoints = await pirateBay.api();
+                return await getData(endpoints?.applications.mac.top100, limit)
+            }),
+            latest: procedure.query(async () => {
+                const endpoints = await pirateBay.api();
+                return await getData(endpoints?.applications.mac.latest, limit)
+            })
+        }),
+        unix: router({
+            top100: procedure.query(async () => {
+                const endpoints = await pirateBay.api();
+                return await getData(endpoints?.applications.unix.top100, limit)
+            }),
+            latest: procedure.query(async () => {
+                const endpoints = await pirateBay.api();
+                return await getData(endpoints?.applications.unix.latest, limit)
+            })
         })
     }),
 });
