@@ -2,7 +2,7 @@ import { procedure, router } from "@/serverTRPC/trpc";
 import { indexedMagnet } from "@/types/indexing";
 import PirateBayApi from "@/utils/pirateBayApi";
 
-const pirateBay = new PirateBayApi(process.env.NODE_ENV !== "development" ? 1 : 0);
+const pirateBay = new PirateBayApi(process.env.NODE_ENV === "development" ? 1 : 0);
 
 const getData = async (url: string | indexedMagnet[], limit: number = -1) => {
     console.log(url);
