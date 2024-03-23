@@ -12,7 +12,7 @@ const getData = async (url: string | indexedMagnet[], limit: number = -1) => {
     return indexes
 }
 
-const limit = 15
+const limit = -1
 
 export const indexRouter = router({
     movie: router({

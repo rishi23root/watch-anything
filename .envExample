@@ -15,7 +15,7 @@ DATABASE_URL=
 FRONTEND=http://localhost:3000
 BACKEND=
 
-# open ai key
-OPENAI_API_KEY=
+# api keys for tmdb - https://developer.themoviedb.org/reference/intro/getting-started 
+TMDB_API_KEY= 
 
 NODE_NO_WARNINGS=1

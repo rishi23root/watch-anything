@@ -46,6 +46,7 @@ class PirateBayApi {
         if (this.isTesting) {
             this.jsonData = indexingData;
         }
+        this.api()
     }
 
     endpoints = (url: string) => (

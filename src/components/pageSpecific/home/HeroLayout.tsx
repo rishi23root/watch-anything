@@ -32,7 +32,7 @@ export default function HomePageLayout() {
       ".itemCard",
       isMounted
         ? { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }
-        : { opacity: 0, scale: 0.3, y: 100, filter: "blur(20px)" },
+        : { opacity: 0, scale: 0.2, y: 100, filter: "blur(20px)" },
       {
         duration: 0.2,
         delay: isMounted ? staggerMenuItems : 0,
@@ -44,7 +44,7 @@ export default function HomePageLayout() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1, delay: 1.3 }}
+      transition={{ duration: 1, delay: 1.5 }}
       className="p-2 lg:p-12 w-full h-screen "
     >
       {/* landing page content */}
