@@ -30,6 +30,6 @@ export type Endpoints<T> = {
         unix: T
     },
     games: T
-    porn?: T
-    ebook?: T
+    porn: T
+    ebook: T
 }

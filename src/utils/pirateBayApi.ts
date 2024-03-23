@@ -1,10 +1,10 @@
-
 // contain all the api for the pirate bay and cerculate the url if fails in the request form one end point to another
 
 import { indexingData } from "@/JSONapiData/indexing";
 import { Endpoints, filterType, indexedMagnet } from "@/types/indexing";
 import xmlToJson from "./xmlToJson";
 
+const cacheHours = 1
 
 class PirateBayApi {
     currentActiveUrl: string;
@@ -23,7 +23,6 @@ class PirateBayApi {
          */
         this.currentActiveUrl = '';
         this.allActiveSites = [
-            'https://thepiratebay.party',
             'https://pbays.pw',
             'https://pbays.biz',
             'https://pbays.xyz',
@@ -32,6 +31,11 @@ class PirateBayApi {
             'https://pirateproxy.ga',
             'https://pirateproxy.ml',
             'https://proxypirate.tk',
+            'https://Prbay.top',
+            'https://prbay.online',
+            'https://thepiratebay10.xyz/',
+            'https://thepiratebay.party',
+
         ] // extracted from https://piratebayproxy.net
 
         this.currentUrlIndex = 0;
@@ -99,20 +103,23 @@ class PirateBayApi {
         }
         else {
             // check if the api is active if not active then return the api object set cache for 1 hour
-            // console.log(!this.isApiActive, (Date.now() - this.lastChecked) > (1000*60*60));
 
-            if (!this.isApiActive || (Date.now() - this.lastChecked) > (1000 * 60 * 60)) {
+            if (!this.isApiActive || (Date.now() - this.lastChecked) > (cacheHours * 1000 * 60 * 60)) {
                 // revalidate the api if the api is not active or the last checked is less than 1 hour
                 console.log("revalidating... api endpoints");
                 await this.updateActiveUrl()
+                if (!this.isApiActive && this.currentActiveUrl == "") {
+                    console.log("[not activated]");
+                }
             } else {
-                console.log("api endpoints are valid using cache");
+                console.log("[active]: ", this.currentActiveUrl, "using cache");
             }
 
             if (this.isApiActive) {
                 return this.endpoints(this.currentActiveUrl) as Endpoints<filterType<string>>;
             }
-            return {} as Endpoints<filterType<string>>;
+            console.log('[not activated] no active url');
+            return undefined;
         }
     }
 
@@ -125,19 +132,26 @@ class PirateBayApi {
         console.log("checking :", url, "...");
 
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'User-Agent': 'Mozilla/5.0'
+                },
+
+            });
             const text = await response.text();
-            if (response.status == 200 || text.includes('PirateBay')) {
+
+            if (response.status == 200 && text.includes('The Pirate Bay')) {
                 // set the currentActiveUrl to the url
                 this.currentActiveUrl = url;
-                console.log("active");
+                console.log("[active]: " + url);
                 return true;
             } else {
-                console.log("not active");
+                console.log("[not active]: ", url);
                 return false;
             }
         } catch (error: any) {
-            console.log("not active", error.message);
+            console.log("[failed]", url, error.message);
             return false;
         }
     }
@@ -147,11 +161,12 @@ class PirateBayApi {
         /**
         find and set the active url form the allActiveSites array
         */
+
         // check if the current active url is working
         this.lastChecked = Date.now();
         let i = 0 // counter
         while (i <= this.allActiveSites.length) {
-            // console.log(this.allActiveSites[this.currentUrlIndex]);
+            console.log(i, this.allActiveSites.length, this.allActiveSites[this.currentUrlIndex]);
 
             // increment the counter
             i++;
@@ -165,7 +180,7 @@ class PirateBayApi {
                 // circulate the index to the next url in the allActiveSites array 
                 this.currentUrlIndex += 1;
                 // check if the currentUrlIndex is greater than the length of allActiveSites
-                if (this.currentUrlIndex > this.allActiveSites.length) {
+                if (this.currentUrlIndex > this.allActiveSites.length - 1) {
                     // reset the currentUrlIndex to 0
                     this.currentUrlIndex = 0;
                 }
@@ -179,7 +194,7 @@ class PirateBayApi {
 
     getIndexing = async (url: string | indexedMagnet[], limit: number = -1) => {
         /**
-         * @param {string}           url "url to test".
+         * @param {string}           url "url to use for request".
          * @param {number}           limit "limit the number of data".
          * @return {Array<indexedMagnet>}           return the array of indexedMagnet.
         // extract the required data from the api and parse it to json

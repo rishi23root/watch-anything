@@ -17,7 +17,7 @@ export default async function Media() {
     <div>
       media
       {"keys :" + keys && " yes"}
-      <Suspense>
+      <Suspense fallback={"loading.."}>
         <table className="md:table-fixed">
           <thead>
             {
