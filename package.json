@@ -82,7 +82,8 @@
     "tailwindcss": "3.3.3",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.162.0",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "@hookform/devtools": "^4.3.1",
