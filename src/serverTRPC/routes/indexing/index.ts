@@ -5,7 +5,7 @@ import PirateBayApi from "@/utils/pirateBayApi";
 const pirateBay = new PirateBayApi(process.env.NODE_ENV === "development" ? 1 : 0);
 
 const getData = async (url: string | indexedMagnet[], limit: number = -1) => {
-    console.log(url);
+    // console.log(url);
     const indexes = await pirateBay.getIndexing(url, limit)
     // now on the basis of title make a request to get the thumbnail api
     // https://www.themoviedb.org/

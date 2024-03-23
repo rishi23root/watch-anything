@@ -166,7 +166,7 @@ class PirateBayApi {
         this.lastChecked = Date.now();
         let i = 0 // counter
         while (i <= this.allActiveSites.length) {
-            console.log(i, this.allActiveSites.length, this.allActiveSites[this.currentUrlIndex]);
+            // console.log(i, this.allActiveSites.length, this.allActiveSites[this.currentUrlIndex]);
 
             // increment the counter
             i++;
@@ -202,7 +202,6 @@ class PirateBayApi {
 
         if (this.isTesting) {
             return url as indexedMagnet[] // here url is data for testing only
-
         }
 
         const response = await fetch(url as string, {
