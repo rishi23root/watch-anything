@@ -6,13 +6,8 @@ import { currentUser } from '@clerk/nextjs';
  */
 export async function createContext() {
     const user = await currentUser();
-    const userDBid = user?.privateMetadata?.userDBid;
-
-    // console.log("creating context for protected route 🥺");
-
     return {
         id: user?.id,
-        dbId: userDBid
     };
 }
 

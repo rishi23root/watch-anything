@@ -15,7 +15,7 @@ export default authMiddleware({
     }
     return NextResponse.next();
   },
-  publicRoutes: ["/", '/home', "/termAndCondition", "/privacyPolicy", '/blog', '/blog/(.*)']
+  publicRoutes: ["/", '/home', "/termAndCondition", "/privacyPolicy", '/blog', '/blog/(.*)', '/feed', '/feed/(.*)']
 });
 
 
