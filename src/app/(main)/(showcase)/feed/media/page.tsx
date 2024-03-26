@@ -6,6 +6,9 @@ export default async function Media() {
   var keys: string[] | undefined = undefined;
 
   // data access points
+  // const data = (await serverAPI.tmdb.getTrendingMovies()).results;
+  // console.log(data);
+
   const data = await serverAPI.index.movie.latest();
 
   if (data && data.length > 0) {
